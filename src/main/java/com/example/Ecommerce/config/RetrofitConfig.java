@@ -23,6 +23,7 @@ public class RetrofitConfig {
 
     @Bean
     public FakeStoreCategory fakeStoreCategory(Retrofit retrofit){
+
         return retrofit.create(FakeStoreCategory.class);
     }
 }
