@@ -3,7 +3,9 @@ package com.example.Ecommerce.gateway;
 import com.example.Ecommerce.dto.CategoryDto;
 import com.example.Ecommerce.dto.FakeStoreCategoryResponseItem;
 import com.example.Ecommerce.gateway.api.FakeStoreCategory;
+import com.example.Ecommerce.mappper.ProductListToCategoryDto;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -11,10 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
-@Component
+@Component("retrofitCategory")
 public class CategoryGateway implements ICategoryGateway{
 
     private final FakeStoreCategory fakeStoreCategory;
+    private final ProductListToCategoryDto categoryDtoMapper;
 
     @Override
     public List<CategoryDto> getAllCategory() throws IOException {
@@ -25,12 +28,6 @@ public class CategoryGateway implements ICategoryGateway{
         }
 
 
-        List<CategoryDto> categories = productList.stream()
-                .map(FakeStoreCategoryResponseItem::getCategory)
-                .distinct()
-                .map(CategoryDto::new)
-                .toList();
-
-        return categories;
+        return categoryDtoMapper.convertToCategoryDto(productList);
     }
 }
