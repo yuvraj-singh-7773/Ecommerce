@@ -17,7 +17,9 @@ public class ProductListToCategoryDto {
         return responseItems.stream()
                 .map(FakeStoreCategoryResponseItem::getCategory)
                 .distinct()
-                .map(CategoryDto::new)
+                .map(name -> CategoryDto.builder()
+                        .name(name)
+                        .build())
                 .toList();
     }
 }

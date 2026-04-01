@@ -17,7 +17,6 @@ import java.util.List;
 public class CategoryRestTemplateGateway implements ICategoryGateway{
 
     private final RestTemplate restTemplate;
-    private final ProductListToCategoryDto categoryDtoMapper;
 
     @Override
     public List<CategoryDto> getAllCategory() throws IOException {
@@ -29,7 +28,7 @@ public class CategoryRestTemplateGateway implements ICategoryGateway{
             throw new IOException("Failed to fetch api request");
         }
 
-        return categoryDtoMapper.convertToCategoryDto(productList);
+        return ProductListToCategoryDto.convertToCategoryDto(productList);
         
     }
 }

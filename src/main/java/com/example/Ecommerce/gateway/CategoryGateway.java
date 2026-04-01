@@ -5,11 +5,9 @@ import com.example.Ecommerce.dto.FakeStoreCategoryResponseItem;
 import com.example.Ecommerce.gateway.api.FakeStoreCategory;
 import com.example.Ecommerce.mappper.ProductListToCategoryDto;
 import lombok.AllArgsConstructor;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -17,7 +15,6 @@ import java.util.List;
 public class CategoryGateway implements ICategoryGateway{
 
     private final FakeStoreCategory fakeStoreCategory;
-    private final ProductListToCategoryDto categoryDtoMapper;
 
     @Override
     public List<CategoryDto> getAllCategory() throws IOException {
@@ -28,6 +25,6 @@ public class CategoryGateway implements ICategoryGateway{
         }
 
 
-        return categoryDtoMapper.convertToCategoryDto(productList);
+        return ProductListToCategoryDto.convertToCategoryDto(productList);
     }
 }

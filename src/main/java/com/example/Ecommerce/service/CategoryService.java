@@ -1,6 +1,7 @@
 package com.example.Ecommerce.service;
 
 
+import com.example.Ecommerce.dto.AllProductsOfCategoryDto;
 import com.example.Ecommerce.dto.CategoryDto;
 import com.example.Ecommerce.gateway.ICategoryGateway;
 import lombok.AllArgsConstructor;
@@ -25,5 +26,20 @@ public class CategoryService implements ICategoryService{
     @Override
     public List<CategoryDto> getAllCategory() throws IOException{
         return gateway.getAllCategory();
+    }
+
+    @Override
+    public CategoryDto createCategory(CategoryDto categoryDTO) {
+        return null;
+    }
+
+    @Override
+    public CategoryDto getByName(String name) throws Exception {
+        return null;
+    }
+
+    @Override
+    public AllProductsOfCategoryDto getAllProductsOfCategory(Long categoryId) throws Exception {
+        return null;
     }
 }

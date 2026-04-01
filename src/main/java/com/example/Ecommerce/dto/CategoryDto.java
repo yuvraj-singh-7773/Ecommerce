@@ -1,12 +1,7 @@
 package com.example.Ecommerce.dto;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.Builder;
-import org.springframework.stereotype.Service;
+import lombok.*;
 
 @Getter
 @Setter
@@ -14,5 +9,6 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 @Builder
 public class CategoryDto {
+    private Integer id;
     private String name;
 }

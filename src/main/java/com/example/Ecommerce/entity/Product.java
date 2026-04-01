@@ -1,0 +1,33 @@
+package com.example.Ecommerce.entity;
+
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.*;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@EqualsAndHashCode(callSuper = true, exclude = "category")
+@ToString(callSuper = true, exclude = "category")
+public class Product extends BaseEntity{
+
+    private String image;
+    private String color;
+    private int price;
+    private String description;
+    private int discount;
+    private String model;
+    private String title;
+    private String brand;
+    private boolean popular;
+
+    @ManyToOne
+    @JoinColumn(name="Category_id",nullable = false)
+    private Category category;
+
+}

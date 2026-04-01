@@ -9,4 +9,5 @@ public interface IProductGateway {
 
     public FakeStoreProductResponseIteam getProductByIdGateway(int id) throws IOException;
 
+
 }
