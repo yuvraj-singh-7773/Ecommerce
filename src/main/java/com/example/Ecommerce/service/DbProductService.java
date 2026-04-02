@@ -5,6 +5,7 @@ import com.example.Ecommerce.dto.ProductDto;
 import com.example.Ecommerce.dto.ProductWithCategoryDto;
 import com.example.Ecommerce.entity.Category;
 import com.example.Ecommerce.entity.Product;
+import com.example.Ecommerce.exception.ProductNotFoundException;
 import com.example.Ecommerce.mappper.ProductMapper;
 import com.example.Ecommerce.repository.CategoryRepository;
 import com.example.Ecommerce.repository.ProductRepository;
@@ -25,7 +26,7 @@ public class DbProductService implements IProductService{
         long productId = id;
         return productRepository.findById(productId)
                 .map(ProductMapper::toFakeStoreResponseItem)
-                .orElseThrow(() -> new RuntimeException("product not found"));
+                .orElseThrow(() ->new ProductNotFoundException("Product with ID " + id +  " not found"));
     }
 
     @Override
@@ -43,7 +44,7 @@ public class DbProductService implements IProductService{
     @Override
     public ProductWithCategoryDto getProductWithCategory(Long id) throws Exception {
         Product product=productRepository.findById(id)
-                .orElseThrow(() -> new Exception("Product not found"));
+                .orElseThrow(() ->new  ProductNotFoundException("Product with ID " + id +  " not found"));
         return ProductMapper.toProductWithCategoryDTO(product);
     }
 }

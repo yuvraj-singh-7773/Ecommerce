@@ -12,8 +12,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@EqualsAndHashCode(callSuper = true, exclude = "category")
-@ToString(callSuper = true, exclude = "category")
 public class Product extends BaseEntity{
 
     private String image;
@@ -27,7 +25,7 @@ public class Product extends BaseEntity{
     private boolean popular;
 
     @ManyToOne
-    @JoinColumn(name="Category_id",nullable = false)
+    @JoinColumn(name="category_id",nullable = false)
     private Category category;
 
 }

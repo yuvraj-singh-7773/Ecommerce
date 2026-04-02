@@ -4,6 +4,7 @@ import com.example.Ecommerce.dto.AllProductsOfCategoryDto;
 import com.example.Ecommerce.dto.CategoryDto;
 import com.example.Ecommerce.dto.ProductDto;
 import com.example.Ecommerce.entity.Category;
+import com.example.Ecommerce.exception.CategoryNotFoundException;
 import com.example.Ecommerce.mappper.AllProductsOfCategoryDtoMapper;
 import com.example.Ecommerce.mappper.CategoryMapper;
 import com.example.Ecommerce.mappper.ProductMapper;
@@ -46,14 +47,14 @@ public class DbCategoryService implements ICategoryService{
     @Override
     public CategoryDto getByName(String name) throws Exception {
         Category category=categoryRepository.findByName(name)
-                .orElseThrow(()->new RuntimeException("Category not found"));
+                .orElseThrow(()->new CategoryNotFoundException("Category not found"));
         return CategoryMapper.toDto(category);
     }
 
     @Override
     public AllProductsOfCategoryDto getAllProductsOfCategory(Long categoryId) throws Exception {
         Category category=categoryRepository.findById(categoryId)
-                .orElseThrow(()->new RuntimeException("Category not found with id: " + categoryId));
+                .orElseThrow(()->new CategoryNotFoundException("Category not found with id: " + categoryId));
 
         List<ProductDto> productDtoList=category.getProducts()
                 .stream()
